@@ -3,12 +3,13 @@ import { Meteor } from 'meteor/meteor';
 Meteor.startup(() => {
   var awsIot = Npm.require('aws-iot-device-sdk');
   var Fiber = Npm.require('fibers');
+  var base = process.env.PWD;
 
   // certs configuration
   var device = awsIot.device({
-    keyPath: '<YOUR-DIRECTORY-TO-PRIVATE.PEM>',
-    certPath: '<YOUR-DIRECTORY-TO-CERT.PEM>',
-    caPath: '<YOUR-DIRECTORY-TO-ROOTCA.PEM>',
+    keyPath: base + '/server/aws/private.key.pem',
+    certPath: base + '/server/aws/certificate.pem.crt',
+    caPath: base + '/server/aws/amazon_ca.pem.txt',
     clientId: 'platform',
     region: 'us-west-2'
   });

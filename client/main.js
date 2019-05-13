@@ -1,22 +1,11 @@
-import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
+import '/client/routes.js'
 
-import './main.html';
-
-Template.hello.onCreated(function helloOnCreated() {
-  // counter starts at 0
-  this.counter = new ReactiveVar(0);
+UI.registerHelper('formatTimeandDate', function(time) {
+	if(time)
+		return moment(time).format('ddd, hh:mm a, MM.DD.YYYY');
 });
 
-Template.hello.helpers({
-  counter() {
-    return Template.instance().counter.get();
-  },
-});
-
-Template.hello.events({
-  'click button'(event, instance) {
-    // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
-  },
+UI.registerHelper('formatTimeandDate3', function(time) {
+	if(time)
+		return moment(time).format('ha, MM.DD.YYYY');
 });
